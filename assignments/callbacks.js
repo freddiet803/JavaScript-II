@@ -82,9 +82,20 @@ console.log(contains('Gum', items, list => `the output was: ${list}`));
 console.log(contains('Candy', items, list => `the output was: ${list}`));
 
 /* STRETCH PROBLEM */
-
+const dupArray = [1, 3, 4, 4, 6, 1, 8];
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  const uniqueSet = new Set(array);
+  const uniqueArray = Array.from(uniqueSet);
+
+  return cb(uniqueArray);
 }
+
+console.log(
+  removeDuplicates(dupArray, function(arr) {
+    return arr;
+  })
+);
+console.log(dupArray);
