@@ -24,32 +24,78 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
 */
 
-
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
+  return cb(arr.length);
 }
+
+console.log(getLength(items, long => `length of array: ${long}`)); // wrote two ways for understanding
+// console.log(
+//   getLength(items, function(long) {
+//     return 'length of array: ' + long;
+//   })
+// );
 
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
+  let lastSpot = arr.length - 1;
+  return cb(arr[lastSpot]);
 }
+console.log(last(items, last => `This is the last item: ${last}`));
+// console.log(
+//   last(items, function(theLast) {
+//     return 'the last item is: ' + theLast;
+//   })
+// );
 
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
+  let sum = x + y;
+  return cb(sum);
 }
+
+console.log(sumNums(5, 6, total => `Your Sum is: ${total}`));
 
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  let product = x * y;
+  return cb(product);
 }
+
+console.log(multiplyNums(5, 6, totalProd => `Your Product is: ${totalProd}`));
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  const filterArray = list.filter(thing => {
+    return thing == item;
+  });
+  let testLength = filterArray.length;
+  if (testLength > 0) {
+    return cb(true);
+  } else {
+    return cb(false);
+  }
 }
 
-/* STRETCH PROBLEM */
+console.log(contains('Gum', items, list => `the output was: ${list}`));
+console.log(contains('Candy', items, list => `the output was: ${list}`));
 
+/* STRETCH PROBLEM */
+const dupArray = [1, 3, 4, 4, 6, 1, 8];
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  const uniqueSet = new Set(array);
+  const uniqueArray = Array.from(uniqueSet);
+
+  return cb(uniqueArray);
 }
+
+console.log(
+  removeDuplicates(dupArray, function(arr) {
+    return arr;
+  })
+);
+console.log(dupArray);
